@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 class Database {
     private $host = DB_HOST;
@@ -11,17 +11,17 @@ class Database {
 
     public function __construct()
     {
-        // Data Source Name
+        // data source name
         $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->db_name;
 
         $option = [
             PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ];
 
         try {
             $this->dbh = new PDO($dsn, $this->user, $this->pass, $option);
-        } catch (PDOException $e) {
+        } catch(PDOException $e) {
             die($e->getMessage());
         }
     }
@@ -33,8 +33,8 @@ class Database {
 
     public function bind($param, $value, $type = null)
     {
-        if (is_null($type)) {
-            switch (true) {
+        if( is_null($type) ) {
+            switch( true ) {
                 case is_int($value) :
                     $type = PDO::PARAM_INT;
                     break;
@@ -44,7 +44,7 @@ class Database {
                 case is_null($value) :
                     $type = PDO::PARAM_NULL;
                     break;
-                default:
+                default :
                     $type = PDO::PARAM_STR;
             }
         }
@@ -56,7 +56,7 @@ class Database {
     {
         $this->stmt->execute();
     }
-    
+
     public function resultSet()
     {
         $this->execute();
@@ -68,4 +68,12 @@ class Database {
         $this->execute();
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function rowCount()
+    {
+        return $this->stmt->rowCount();
+    }
+
+
+
 }

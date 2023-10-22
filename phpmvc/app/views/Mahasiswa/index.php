@@ -9,19 +9,36 @@
 
     <div class="row">
         <div class="clo-lg-6">
-            <button type="button" class="btn btn-primary tombolTambahData" data-bs-toggle="modal" 
-            data-bs-target="#formModal">
+            <button type="button" class="btn btn-primary tombolTambahData" data-bs-toggle="#formModal">
                 Tambah Data Mahasiswa
             </button>
-            <br></br>
+        </div>
+    </div>
+<br></br>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <form action="<?=BASEURL;?>/mahasiswa/cari" method="post">
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" placeholder="Cari mahasiswa...." autocomplete="off" name="keyword" id="keyword" aria-describedby="button-addon2">
+          <button class="btn btn-primary" type="submit" id="tombolCari">Cari</button>
+        </div>
+      </form>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+
+
             <h3>Daftar Mahasiswa</h3>
             <ul class="list-group">
                 <?php foreach( $data['mhs'] as $mhs) : ?>
                 <li class="list-group-item">
                     <?= $mhs['nama']; ?>
-                    <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id']; ?>" class="badge text-bg-danger float-end me-1" onclick="return confirm('Apakah anda yakin?')">Hapus</a>
+                    <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id']; ?>" class="badge text-bg-danger float-end me-1" onclick="return confirm('Apakah anda yakin ingin menghapus?')">Hapus</a>
                     <a href="<?= BASEURL; ?>/mahasiswa/ubah/<?= $mhs['id']; ?>" class="badge text-bg-success float-end me-1 tampilModalUbah" data-bs-toggle="modal" 
-                        data-bs-target="#formModal" data-id="<?= $mhs['id'] ?>">Ubah</a>
+                        data-bs-target="#formModal" data-id="<?= $mhs['id']; ?>">Ubah</a>
                     <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>" class="badge text-bg-primary float-end me-1">Detail</a>
                 
                 </li>
@@ -42,22 +59,22 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+
         <form action="<?= BASEURL; ?>/mahasiswa/tambah" method="post">
         <input type="hidden" name="id" id="id">
 
-
-            <div class="form-group">
-                <label for="nama">Nama</label>
+            <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control" id="nama" name="nama">
             </div>
 
-            <div class="form-group">
-                <label for="npm">NPM</label>
+            <div class="mb-3">
+                <label for="npm" class="form-label">NPM</label>
                 <input type="number" class="form-control" id="npm" name="npm">
             </div>
 
-            <div class="form-group">
-                <label for="email">Email</label>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email">
             </div>
 

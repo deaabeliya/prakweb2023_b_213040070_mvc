@@ -9,13 +9,13 @@ $(function () {
       $(".modal-footer button[type=submit]").html("Ubah Data");
       $(".modal-body form").attr(
         "action",
-        "http://prakweb2023_b_213040070_mvc/public/mahasiswa/ubah"
+        "http://prakweb2023_b_213040070_mvc/phpmvc/public/mahasiswa/ubah"
       );
   
       const id = $(this).data("id");
   
       $.ajax({
-        url: "http://prakweb2023_b_213040070_mvc/public/mahasiswa/getubah",
+        url: "http://prakweb2023_b_213040070_mvc/phpmvc/public/mahasiswa/getubah",
         data: { id: id },
         method: "post",
         dataType: "json",
